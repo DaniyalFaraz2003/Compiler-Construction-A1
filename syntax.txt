@@ -22,6 +22,10 @@ void main () => {
 
 <datatype> <varname> = <varval> | <expr> | <varname>;
 
+-> Assignment Statement
+
+<varname> = <varval> | <expr> | <varname>;
+
 -> Expression
 
 <varname> <operator> <varname> | <varname> <operator> <varval> | <varval> <operator> <varname> | <varval> <operator> <varval>
@@ -57,3 +61,4 @@ Language Rules:
 - Functions cannot be defined in other functions.
 - The operators can be used with the respective data types only.
 - The output function log() can be used to print the value of a variable or an expression.
+- Every statement should end with a semicolon.
