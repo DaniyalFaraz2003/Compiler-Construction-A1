@@ -1,0 +1,59 @@
+Data Types:
+
+-> Boolean - true | false
+-> Integer - [-]?\d+
+-> Decimal - [-]?\d+\.[\d+]{1,5}
+-> Character - [all characters]{1}
+
+Comments:
+
+// -> Single line comment (anything written after // will be ignored)
+** ** -> Multi line comment (anything written between ** ** will be ignored)
+
+Syntax:
+
+-> Entry Point
+
+void main () => {
+    // Code
+}
+
+-> Variable Declaration
+
+<datatype> <varname> = <varval> | <expr> | <varname>;
+
+-> Expression
+
+<varname> <operator> <varname> | <varname> <operator> <varval> | <varval> <operator> <varname> | <varval> <operator> <varval>
+
+:= Can be multiple operators in one expression and it is executed according to precendence =:
+
+<expr> -> <expr> <operator> <literal>
+<literal> -> <varname> | <varval>
+<operator> -> + | - | * | / | % | ^
+
+-> Operator
+
++ | - | * | / | % | ^ | =
+
+:= Precedence =:
+   high
+    ^     ^ (exponentiation - right to left)
+    |     % (modulus - left to right)
+    |     * | / (multiplication and division - left to right)
+    |     + | - (addition and subtraction - left to right)
+    |     = (assignment - right to left)
+   low
+
+-> Output
+
+log(<varname> | <varval> | <expr>);
+
+Language Rules:
+- The main entry point or the main function is the starting point of the program.
+- The functions and global variables are defined outside the main entry point.
+- Local variables can be defined inside any function.
+- The main entry point is a function as well.
+- Functions cannot be defined in other functions.
+- The operators can be used with the respective data types only.
+- The output function log() can be used to print the value of a variable or an expression.
