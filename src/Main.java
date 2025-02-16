@@ -1,5 +1,8 @@
+import machines.RE;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("hello world");
+        RE re = new RE();
+        re.printRE("comment", "multiline");
     }
 }

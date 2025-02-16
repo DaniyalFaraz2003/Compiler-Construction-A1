@@ -49,6 +49,10 @@ void main () => {
     |     = (assignment - right to left)
    low
 
+-> Input
+
+scan(<varname>);
+
 -> Output
 
 log(<varname> | <varval> | <expr>);
@@ -63,6 +67,7 @@ Language Rules:
 - The output function log() can be used to print the value of a variable or an expression.
 - Every statement should end with a semicolon.
 
+
 Symbol types:
 
 -> { } - Curly braces
@@ -71,7 +76,7 @@ Symbol types:
 -> ; - Semicolon
 -> , - Comma
 -> All operators -> + | - | * | / | % | ^ | =
--> Variable Names -> only lowercase alphabets
+-> Variable Names -> only lowercase alphabets   ---  RE:
 -> Function Names -> only lowercase alphabets
 -> Data Types -> Boolean | Integer | Decimal | Character
 -> Literals
@@ -80,4 +85,15 @@ Symbol types:
     -> Decimal -> [-]?\d+\.[\d+]{1,5}
     -> Character -> '[all characters]{1}'
 -> keywords
-    -> log -> output function
+    -> log -> Output Function
+    -> scan -> Input Function
+-> Comments
+    -> // -> Single line comment
+    -> ** ** -> Multi line comment
+
+Symbol Table Columns:
+
+-> Name
+-> Type
+-> Scope
+-> Line No
