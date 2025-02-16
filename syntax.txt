@@ -3,7 +3,7 @@ Data Types:
 -> Boolean - true | false
 -> Integer - [-]?\d+
 -> Decimal - [-]?\d+\.[\d+]{1,5}
--> Character - [all characters]{1}
+-> Character - '[all characters]{1}'
 
 Comments:
 
@@ -62,3 +62,22 @@ Language Rules:
 - The operators can be used with the respective data types only.
 - The output function log() can be used to print the value of a variable or an expression.
 - Every statement should end with a semicolon.
+
+Symbol types:
+
+-> { } - Curly braces
+-> ( ) - Parentheses
+-> [ ] - Square brackets
+-> ; - Semicolon
+-> , - Comma
+-> All operators -> + | - | * | / | % | ^ | =
+-> Variable Names -> only lowercase alphabets
+-> Function Names -> only lowercase alphabets
+-> Data Types -> Boolean | Integer | Decimal | Character
+-> Literals
+    -> Boolean -> true | false
+    -> Integer -> [-]?\d+
+    -> Decimal -> [-]?\d+\.[\d+]{1,5}
+    -> Character -> '[all characters]{1}'
+-> keywords
+    -> log -> output function
