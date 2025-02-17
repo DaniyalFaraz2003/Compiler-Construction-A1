@@ -41,4 +41,7 @@ public class NFARepository {
         )));
     }
 
+    public void buildNFAs() {
+        
+    }
 }

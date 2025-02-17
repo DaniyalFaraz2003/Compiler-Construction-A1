@@ -9,6 +9,7 @@ public class NFA {
 
     public NFA() {
         this.transitions = new HashMap<Integer, ArrayList<TransitionNode>>();
+        this.finalStates = new ArrayList<>();
     }
 
     public void addTransition(Integer currentState, String input, Integer nextState) {
@@ -28,12 +29,25 @@ public class NFA {
             System.out.println();
         }
         System.out.println();
-        System.out.println("Initial State: " + this.initialState);
-        System.out.println("Final States: " + this.finalStates);
+        System.out.println("Initial State: " + this.getInitialState());
+        System.out.println("Final States: " + this.getFinalStates());
+        System.out.println("Total States: " + this.totalStates());
     }
 
     public int getInitialState() {
         return this.initialState;
+    }
+
+    public void setInitialState(Integer initialState) {
+        this.initialState = initialState;
+    }
+
+    public void addFinalState(Integer finalState) {
+        if (this.finalStates == null) {
+            this.finalStates = new ArrayList<Integer>(Arrays.asList(finalState));
+        } else {
+            this.finalStates.add(finalState);
+        }
     }
 
     public int totalStates() {
