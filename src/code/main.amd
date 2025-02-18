@@ -1,0 +1,50 @@
+void main () => {
+    // Variable Declaration
+    Integer a = 5;
+    Integer b = 10;
+    Integer c = 0;
+    Decimal d = 5.5;
+    Decimal e = 10.5;
+    Decimal f = 0.0;
+    Boolean g = true;
+    Boolean h = false;
+    Character i = 'a';
+    Character j = 'b';
+    Character k = 'c';
+
+    // Assignment Statement
+    c = a + b;
+    f = d + e;
+
+    // Expression
+    c = a + b;
+    c = a - b;
+    c = a * b;
+    c = a / b;
+    c = a % b;
+    c = a ^ b;
+    c = a = b;
+
+    // Input
+    scan(a);
+    scan(b);
+    scan(d);
+    scan(e);
+    scan(g);
+    scan(h);
+    scan(i);
+    scan(j);
+
+    // Output
+    log(a);
+    log(b);
+    log(c);
+    log(d);
+    log(e);
+    log(f);
+    log(g);
+    log(h);
+    log(i);
+    log(j);
+    log(k);
+}

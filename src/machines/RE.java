@@ -7,8 +7,8 @@ public class RE {
     public RE() {
         this.REs = new HashMap<String, HashMap<String, StringBuilder>>();
         this.REs.put("operator", new HashMap<>(Map.of(
-            "arithmetic", new StringBuilder("[-+*/%^]"),
-            "assignment", new StringBuilder("[=]")
+            "arithmetic", new StringBuilder("-|+|*|/|%|^"),
+            "assignment", new StringBuilder("=")
         )));
         this.REs.put("keyword", new HashMap<>(Map.of(
             "output", new StringBuilder("log"),
@@ -20,7 +20,7 @@ public class RE {
             "function", new StringBuilder("[abcdefghijklmnopqrstuvwxyz]+")
         )));
         this.REs.put("datatype", new HashMap<>(Map.of(
-            "primitive", new StringBuilder("Boolean | Integer | Decimal | Character")
+            "primitive", new StringBuilder("Boolean|Integer|Decimal|Character")
         )));
         this.REs.put("literal", new HashMap<>(Map.of(
             "boolean", new StringBuilder("true | false"),

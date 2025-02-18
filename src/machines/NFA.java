@@ -3,9 +3,9 @@ package machines;
 import java.util.*;
 
 public class NFA {
-    private HashMap<Integer, ArrayList<TransitionNode>> transitions;
-    private ArrayList<Integer> finalStates;
-    private Integer initialState;
+    protected HashMap<Integer, ArrayList<TransitionNode>> transitions;
+    protected ArrayList<Integer> finalStates;
+    protected Integer initialState;
 
     public NFA() {
         this.transitions = new HashMap<Integer, ArrayList<TransitionNode>>();
@@ -51,7 +51,46 @@ public class NFA {
     }
 
     public int totalStates() {
-        return this.transitions.size();
+        Set<Integer> visited = new HashSet<>();
+
+        if (initialState != null) {
+            Stack<Integer> stack = new Stack<>();
+            stack.push(initialState);
+
+            while (!stack.isEmpty()) {
+                Integer current = stack.pop();
+                if (!visited.contains(current)) {
+                    visited.add(current);
+                    if (transitions.containsKey(current)) {
+                        for (TransitionNode transition : transitions.get(current)) {
+                            stack.push(transition.getNextState());
+                        }
+                    }
+                }
+            }
+        }
+
+        for (Integer state : transitions.keySet()) {
+            visited.add(state);
+            for (TransitionNode transition : transitions.get(state)) {
+                visited.add(transition.getNextState());
+            }
+        }
+
+        visited.addAll(finalStates);
+
+        return visited.size();
+    }
+
+    public Integer getNextState(Integer currentState, String input) {
+        if (this.transitions.containsKey(currentState)) {
+            for (TransitionNode transition : this.transitions.get(currentState)) {
+                if (transition.getInput().equals(input)) {
+                    return transition.getNextState();
+                }
+            }
+        }
+        return null;
     }
 
     public ArrayList<Integer> getFinalStates() {

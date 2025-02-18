@@ -1,8 +1,9 @@
 import machines.RE;
-
+import machines.NFARepository;
 public class Main {
     public static void main(String[] args) {
-        RE re = new RE();
-        re.printRE("comment", "multiline");
+        NFARepository nfas = new NFARepository();
+        nfas.buildNFAs();
+        nfas.printNfaStats("operator", "assignment");
     }
 }
