@@ -23,14 +23,14 @@ public class RE {
             "primitive", new StringBuilder("Boolean|Integer|Decimal|Character")
         )));
         this.REs.put("literal", new HashMap<>(Map.of(
-            "boolean", new StringBuilder("true | false"),
-            "integer", new StringBuilder("[-]?[1-9][0-9]*"),
-            "decimal", new StringBuilder("[-]?(([1-9][0-9]*) | [0])\\.[0-9]{1,5}"),
-            "character", new StringBuilder("'[a-zA-Z0-9&$%#@!^*()_+-=<>?/|{}\\[\\]]'")
+            "boolean", new StringBuilder("true|false"),
+            "integer", new StringBuilder("(-(1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)*)|((1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)*) "),
+            "decimal", new StringBuilder("((-(1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)*)|((1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)*)|(0)),(((0|1|2|3|4|5|6|7|8|9))|((0|1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9))|((0|1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9))|((0|1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9))|((0|1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)))"),
+            "character", new StringBuilder("'.'")
         )));
         this.REs.put("comment", new HashMap<>(Map.of(
-            "singleline", new StringBuilder("//.*\\n"),
-            "multiline", new StringBuilder("** [a-zA-Z0-9&$%#@!^()_+-=<>?/|{}\\[\\]\\n]* **")
+            "singleline", new StringBuilder("//(.*)\\n"),
+            "multiline", new StringBuilder("**(.*)**")
         )));
     }
 
@@ -38,3 +38,4 @@ public class RE {
         System.out.println(this.REs.get(category).get(subcategory).toString());
     }
 }
+

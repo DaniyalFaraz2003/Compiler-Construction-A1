@@ -1,9 +1,9 @@
 import machines.RE;
 import machines.NFARepository;
+import compiler.TokenAutomata;
 public class Main {
     public static void main(String[] args) {
-        NFARepository nfas = new NFARepository();
-        nfas.buildNFAs();
-        nfas.printNfaStats("operator", "assignment");
+        TokenAutomata tokenAutomata = new TokenAutomata();
+        tokenAutomata.processRegex("(a|b)*abb");
     }
-}
+}// aabbabb

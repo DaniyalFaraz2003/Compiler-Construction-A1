@@ -50,6 +50,10 @@ public class NFA {
         }
     }
 
+    public HashMap<Integer, ArrayList<TransitionNode>> getTransitions() {
+        return transitions;
+    }
+
     public int totalStates() {
         Set<Integer> visited = new HashSet<>();
 

@@ -8,7 +8,7 @@ Data Types:
 Comments:
 
 // -> Single line comment (anything written after // will be ignored)
-** ** -> Multi line comment (anything written between ** ** will be ignored)
+/= =/ -> Multi line comment (anything written between ** ** will be ignored)
 
 Syntax:
 
@@ -89,7 +89,7 @@ Symbol types:
     -> scan -> Input Function
 -> Comments
     -> // -> Single line comment
-    -> ** ** -> Multi line comment
+    -> /= =/ ** -> Multi line comment
 
 Symbol Table Columns:
 
