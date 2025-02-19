@@ -34,6 +34,10 @@ public class RE {
         )));
     }
 
+    public StringBuilder getRE(String category, String subcategory) {
+        return this.REs.get(category).get(subcategory);
+    }
+
     public void printRE (String category, String subcategory) {
         System.out.println(this.REs.get(category).get(subcategory).toString());
     }
