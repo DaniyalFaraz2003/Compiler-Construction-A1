@@ -15,9 +15,9 @@ public class RE {
             "input", new StringBuilder("scan")
         )));
         this.REs.put("identifier", new HashMap<>(Map.of(
-            "constant", new StringBuilder("((A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z)*)"),
-            "variable", new StringBuilder("((a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z)*)"),
-            "function", new StringBuilder("((a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z)*)")
+            "constant", new StringBuilder("(((A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z))((A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z)*))"),
+            "variable", new StringBuilder("(((a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z))((a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z)*))"),
+            "function", new StringBuilder("(((a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z))((a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z)*))")
         )));
         this.REs.put("datatype", new HashMap<>(Map.of(
             "primitive", new StringBuilder("Boolean|Integer|Decimal|Character")

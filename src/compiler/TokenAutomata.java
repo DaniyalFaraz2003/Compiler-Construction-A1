@@ -323,7 +323,7 @@ public class TokenAutomata {
         }
 
         // Print DFA transition table
-        printDFATable(dfa, dfaStates);
+        //printDFATable(dfa, dfaStates);
 
         return dfa;
     }
@@ -416,30 +416,29 @@ public class TokenAutomata {
     public DFA processRegex(String regex) {
         buildAlphabet(regex);
 
-        System.out.println("\nAlphabet: ");
-        for (char c : alphabet) {
-            System.out.print(c + " ");
-        }
-        System.out.println();
+        //System.out.println("\nAlphabet: ");
+        //for (char c : alphabet) {
+        //    System.out.print(c + " ");
+        //}
+        //System.out.println();
 
         String preprocessed = preprocessRegex(regex);
-        System.out.println("Preprocessed: " + preprocessed);
+        //System.out.println("Preprocessed: " + preprocessed);
 
         String postfix = convertToPostfix(preprocessed);
-        System.out.println("Postfix: " + postfix);
+        //System.out.println("Postfix: " + postfix);
 
         NFA nfa = constructNFA(postfix);
-        printNFATable(nfa);
+        //printNFATable(nfa);
 
-        System.out.println("\nConverting NFA to DFA...");
+        //System.out.println("\nConverting NFA to DFA...");
         DFA dfa = convertToDFA(nfa);
         return dfa;
 
     }
 
     public boolean testString(DFA dfa, String input) {
-        boolean accepted = runDFA(dfa, input);
-        return accepted;
+        return runDFA(dfa, input);
     }
 
 }
