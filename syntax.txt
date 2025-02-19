@@ -89,7 +89,7 @@ Symbol types:
     -> scan -> Input Function
 -> Comments
     -> // -> Single line comment
-    -> /= =/ ** -> Multi line comment
+    -> /= =/ -> Multi line comment
 
 Symbol Table Columns:
 

@@ -6,4 +6,4 @@ public class Main {
         TokenAutomata tokenAutomata = new TokenAutomata();
         tokenAutomata.processRegex("(a|b)*abb");
     }
-}// aabbabb
+}
