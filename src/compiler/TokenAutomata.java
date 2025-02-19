@@ -385,8 +385,35 @@ public class TokenAutomata {
         System.out.println("\n");
     }
 
+    private boolean runDFA(DFA dfa, String input) {
+        int currentState = dfa.getInitialState();
+
+        for (char c : input.toCharArray()) {
+            boolean transitionFound = false;
+
+            // Check if there's a transition for the current character
+            if (dfa.getTransitions().containsKey(currentState)) {
+                for (TransitionNode tn : dfa.getTransitions().get(currentState)) {
+                    if (tn.getInput().equals(String.valueOf(c))) {
+                        currentState = tn.getNextState();
+                        transitionFound = true;
+                        break;
+                    }
+                }
+            }
+
+            // If no transition is found for the current character, the string is rejected
+            if (!transitionFound) {
+                return false;
+            }
+        }
+
+        // After processing the entire string, check if the current state is a final state
+        return dfa.getFinalStates().contains(currentState);
+    }
+
     // Update the processRegex method to include DFA conversion:
-    public void processRegex(String regex) {
+    public DFA processRegex(String regex) {
         buildAlphabet(regex);
 
         System.out.println("\nAlphabet: ");
@@ -406,12 +433,13 @@ public class TokenAutomata {
 
         System.out.println("\nConverting NFA to DFA...");
         DFA dfa = convertToDFA(nfa);
-
-        // Test strings
-
-
+        return dfa;
 
     }
 
+    public boolean testString(DFA dfa, String input) {
+        boolean accepted = runDFA(dfa, input);
+        return accepted;
+    }
 
 }
