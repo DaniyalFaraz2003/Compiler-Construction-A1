@@ -9,7 +9,7 @@ public class Main {
 
         // Initialize components
         Lexer lexer = new Lexer();
-        String sourceCode = lexer.loadCodeFromFile("src/code/main.txt");
+        String sourceCode = lexer.loadCodeFromFile("src/code/main.ad");
         SymbolTableGenerator symbolTableGenerator = new SymbolTableGenerator();
         LexicalErrorHandler errorHandler = new LexicalErrorHandler();
 
