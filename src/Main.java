@@ -9,7 +9,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // Sample code to test - you can also load from file using lexer.loadCodeFromFile()
 
 
         // Initialize components
