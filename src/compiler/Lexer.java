@@ -49,10 +49,16 @@ public class Lexer {
         boolean inSingleLineComment = false;
         boolean inMultiLineComment = false;
         boolean inCharacterLiteral = false;
+        int currentLine = 1; // Track current line number
 
         for (int i = 0; i < sourceCode.length(); i++) {
             char c = sourceCode.charAt(i);
             char nextChar = (i + 1 < sourceCode.length()) ? sourceCode.charAt(i + 1) : '\0';
+
+            // Track line numbers
+            if (c == '\n') {
+                currentLine++;
+            }
 
             // Handle comments
             if (c == '/' && nextChar == '/' && !inMultiLineComment && !inCharacterLiteral) {
@@ -87,7 +93,7 @@ public class Lexer {
             if (c == '\'' && inCharacterLiteral) {
                 inCharacterLiteral = false;
                 currentToken.append(c);
-                addToken(tokens, currentToken);
+                addToken(tokens, currentToken, currentLine);
                 continue;
             }
             if (inCharacterLiteral) {
@@ -97,14 +103,14 @@ public class Lexer {
 
             // Handle whitespace
             if (Character.isWhitespace(c)) {
-                addToken(tokens, currentToken);
+                addToken(tokens, currentToken, currentLine);
                 continue;
             }
 
             // Handle single-character tokens
             if (isSingleToken(String.valueOf(c))) {
-                addToken(tokens, currentToken);
-                tokens.add(new Token(String.valueOf(c), getTokenType(String.valueOf(c))));
+                addToken(tokens, currentToken, currentLine);
+                tokens.add(new Token(String.valueOf(c), getTokenType(String.valueOf(c)), currentLine));
                 continue;
             }
 
@@ -113,14 +119,14 @@ public class Lexer {
         }
 
         // Add any remaining token
-        addToken(tokens, currentToken);
+        addToken(tokens, currentToken, currentLine);
         return tokens;
     }
 
-    private void addToken(List<Token> tokens, StringBuilder currentToken) {
+    private void addToken(List<Token> tokens, StringBuilder currentToken, int lineNumber) {
         if (currentToken.length() > 0) {
             String tokenStr = currentToken.toString();
-            tokens.add(new Token(tokenStr, getTokenType(tokenStr)));
+            tokens.add(new Token(tokenStr, getTokenType(tokenStr), lineNumber));
             currentToken.setLength(0);
         }
     }
@@ -174,7 +180,6 @@ public class Lexer {
         if (tokenAutomata.testString(characterDfa, token)) return TokenType.CHARACTER_LITERAL;
 
         // Check identifiers
-
         tokenAutomata = new TokenAutomata();
         DFA variableDfa = tokenAutomata.processRegex(reRepo.getRE("identifier", "variable").toString());
         if (tokenAutomata.testString(variableDfa, token)) {
@@ -197,10 +202,12 @@ public class Lexer {
     public static class Token {
         private final String value;
         private final TokenType type;
+        private final int lineNumber;
 
-        public Token(String value, TokenType type) {
+        public Token(String value, TokenType type, int lineNumber) {
             this.value = value;
             this.type = type;
+            this.lineNumber = lineNumber;
         }
 
         public String getValue() {
@@ -211,9 +218,13 @@ public class Lexer {
             return type;
         }
 
+        public int getLineNumber() {
+            return lineNumber;
+        }
+
         @Override
         public String toString() {
-            return String.format("Token{value='%s', type=%s}", value, type);
+            return String.format("Token{value='%s', type=%s, line=%d}", value, type, lineNumber);
         }
     }
 

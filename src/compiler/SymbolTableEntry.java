@@ -5,7 +5,6 @@ public class SymbolTableEntry {
     private String type;        // Type of the symbol (e.g., "int", "float", "function")
     private String scope;       // Scope of the symbol (e.g., "global", "local")
     private int lineNumber;     // Line number where the symbol is declared
-    private Object value;       // Value of the symbol (if applicable)
 
     // Constructor
     public SymbolTableEntry(String name, String type, String scope, int lineNumber) {
@@ -48,13 +47,6 @@ public class SymbolTableEntry {
         this.lineNumber = lineNumber;
     }
 
-    public Object getValue() {
-        return value;
-    }
-
-    public void setValue(Object value) {
-        this.value = value;
-    }
 
     @Override
     public String toString() {
@@ -63,7 +55,6 @@ public class SymbolTableEntry {
                 ", type='" + type + '\'' +
                 ", scope='" + scope + '\'' +
                 ", lineNumber=" + lineNumber +
-                ", value=" + value +
                 '}';
     }
 }

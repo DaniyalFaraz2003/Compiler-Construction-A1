@@ -1,39 +1,81 @@
-import compiler.Lexer;
-import compiler.SymbolTable;
-import compiler.SymbolTableEntry;
+import compiler.*;
+import compiler.errorhandler.LexicalErrorHandler;
 import machines.DFA;
 import machines.RE;
 import machines.NFARepository;
-import compiler.TokenAutomata;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // Path to the source code file
-        String filePath = "src/code/main.txt"; // Replace with the actual file path
+        // Sample code to test - you can also load from file using lexer.loadCodeFromFile()
 
-        // Create an instance of the Lexer
+
+        // Initialize components
         Lexer lexer = new Lexer();
+        String sourceCode = lexer.loadCodeFromFile("src/code/main.txt");
+        SymbolTableGenerator symbolTableGenerator = new SymbolTableGenerator();
+        LexicalErrorHandler errorHandler = new LexicalErrorHandler();
 
-        // Load the source code from the file
+        try {
+            // Step 1: Perform lexical analysis
+            System.out.println("Step 1: Performing Lexical Analysis...");
+            List<Lexer.Token> tokens = lexer.tokenize(sourceCode);
+
+            // Print all tokens
+            System.out.println("\nTokens generated:");
+            for (Lexer.Token token : tokens) {
+                System.out.println(token);
+            }
+
+            // Step 2: Check for lexical errors
+            System.out.println("\nStep 2: Checking for Lexical Errors...");
+            errorHandler.checkForErrors(tokens);
+
+            if (errorHandler.hasErrors()) {
+                System.out.println("\nLexical Errors Found:");
+                errorHandler.printErrors();
+                return; // Stop compilation if there are lexical errors
+            }
+
+            // Step 3: Generate symbol table
+            System.out.println("\nStep 3: Generating Symbol Table...");
+            SymbolTable symbolTable = symbolTableGenerator.generateSymbolTable(tokens);
+
+            // Print symbol table
+            System.out.println("\nSymbol Table Contents:");
+            symbolTable.printSymbolTable();
+
+        } catch (Exception e) {
+            System.err.println("Compilation Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    // Utility method to demonstrate file loading
+    public static void compileFile(String filePath) {
+        Lexer lexer = new Lexer();
         String sourceCode = lexer.loadCodeFromFile(filePath);
+
         if (sourceCode == null) {
-            System.out.println("Failed to load source code from file.");
+            System.err.println("Failed to load source file: " + filePath);
             return;
         }
 
-        System.out.println("Source code loaded successfully:");
-        System.out.println(sourceCode);
+        SymbolTableGenerator symbolTableGenerator = new SymbolTableGenerator();
+        LexicalErrorHandler errorHandler = new LexicalErrorHandler();
 
-        // Tokenize the source code
+        // Perform compilation steps
         List<Lexer.Token> tokens = lexer.tokenize(sourceCode);
+        errorHandler.checkForErrors(tokens);
 
-        // Print the tokens
-        System.out.println("\nTokens:");
-        for (Lexer.Token token : tokens) {
-            System.out.println(token);
+        if (errorHandler.hasErrors()) {
+            errorHandler.printErrors();
+            return;
         }
+
+        SymbolTable symbolTable = symbolTableGenerator.generateSymbolTable(tokens);
+        symbolTable.printSymbolTable();
     }
 }

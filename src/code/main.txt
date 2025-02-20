@@ -1,4 +1,4 @@
-Void main () => {
+Void main () = {
     // Variable Declaration
     Integer a = 5;
     Integer b = 10;
@@ -11,8 +11,7 @@ Void main () => {
     in this file =/
 
     // Assignment Statement
-    c = a + b;
-    f = d + e;
+    c = a + b; f = d + e;
 
     // Expression
     c = a + b;
