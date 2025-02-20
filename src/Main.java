@@ -1,10 +1,6 @@
 import compiler.*;
 import compiler.errorhandler.LexicalErrorHandler;
-import machines.DFA;
-import machines.RE;
-import machines.NFARepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {

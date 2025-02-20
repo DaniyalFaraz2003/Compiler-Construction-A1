@@ -5,6 +5,7 @@ Void main () {
     // Variable Declaration
     Integer a = 5;
     Integer b = 10;
+    Character x = '2';
 
     Decimal e = 10.5;
 
