@@ -1,9 +1,11 @@
+Integer c = 0;
+Decimal d = 5.5;
+
 Void main () {
     // Variable Declaration
     Integer a = 5;
     Integer b = 10;
-    Integer c = 0;
-    Decimal d = 5.5;
+
     Decimal e = 10.5;
 
     /= this is a multiline comment
@@ -18,9 +20,6 @@ Void main () {
     c = a - b;
     c = a * b;
     c = a / b;
-    c = a % b;
-    c = a ^ b;
-    c = a = b;
 
     // Input
     scan(a);
