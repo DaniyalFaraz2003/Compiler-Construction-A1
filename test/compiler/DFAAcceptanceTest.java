@@ -198,4 +198,105 @@ class DFAAcceptanceTest {
                 )
         );
     }
+
+    @Test
+    @DisplayName("Test DFA for literal: integer")
+    void testStringLiteralInteger() {
+        TokenAutomata tk = new TokenAutomata();
+        RE reRepo = new RE();
+        StringBuilder regex = reRepo.getRE("literal", "integer");
+        DFA dfa = tk.processRegex(regex.toString());
+
+        ArrayList<String> testCases = new ArrayList<>();
+        testCases.add("-120");
+        testCases.add("-0");
+        testCases.add("032");
+        testCases.add("1234.3");
+        testCases.add("239");
+        testCases.add("123m");
+        testCases.add("");
+
+        assertAll(
+                () -> assertTrue(tk.testString(dfa, testCases.getFirst())),
+                () -> assertFalse(tk.testString(dfa, testCases.get(1))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(2))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(3))),
+                () -> assertTrue(tk.testString(dfa, testCases.get(4))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(5))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(6))
+                )
+        );
+    }
+
+    @Test
+    @DisplayName("Test DFA for literal: decimal")
+    void testStringLiteralDecimal() {
+        TokenAutomata tk = new TokenAutomata();
+        RE reRepo = new RE();
+        StringBuilder regex = reRepo.getRE("literal", "decimal");
+        DFA dfa = tk.processRegex(regex.toString());
+
+        ArrayList<String> testCases = new ArrayList<>();
+        testCases.add("-0,1232");
+        testCases.add("0,323");
+        testCases.add("3213,2312");
+        testCases.add("-12,232");
+        testCases.add("21,3433");
+        testCases.add("q12,32");
+        testCases.add("");
+        testCases.add("-0,232");
+        testCases.add("2,232322");
+        testCases.add("-221,12345");
+        testCases.add("-02,1234");
+
+        assertAll(
+                () -> assertTrue(tk.testString(dfa, testCases.getFirst())),
+                () -> assertTrue(tk.testString(dfa, testCases.get(1))),
+                () -> assertTrue(tk.testString(dfa, testCases.get(2))),
+                () -> assertTrue(tk.testString(dfa, testCases.get(3))),
+                () -> assertTrue(tk.testString(dfa, testCases.get(4))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(5))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(6))),
+                () -> assertTrue(tk.testString(dfa, testCases.get(7))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(8))),
+                () -> assertTrue(tk.testString(dfa, testCases.get(9))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(10)))
+
+
+
+        );
+    }
+
+    @Test
+    @DisplayName("Test DFA for literal: character")
+    void testStringLiteralCharacter() {
+        TokenAutomata tk = new TokenAutomata();
+        RE reRepo = new RE();
+        StringBuilder regex = reRepo.getRE("literal", "character");
+        DFA dfa = tk.processRegex(regex.toString());
+
+        ArrayList<String> testCases = new ArrayList<>();
+        testCases.add("'3'");
+        testCases.add("'+'");
+        testCases.add("'t'");
+        testCases.add("'f'");
+        testCases.add("'4'");
+        testCases.add("'F'");
+        testCases.add("'S'");
+        testCases.add("' '");
+        testCases.add("'d");
+
+        assertAll(
+                () -> assertTrue(tk.testString(dfa, testCases.getFirst())),
+                () -> assertFalse(tk.testString(dfa, testCases.get(1))),
+                () -> assertTrue(tk.testString(dfa, testCases.get(2))),
+                () -> assertTrue(tk.testString(dfa, testCases.get(3))),
+                () -> assertTrue(tk.testString(dfa, testCases.get(4))),
+                () -> assertTrue(tk.testString(dfa, testCases.get(5))),
+                () -> assertTrue(tk.testString(dfa, testCases.get(6))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(7))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(8)))
+
+        );
+    }
 }
