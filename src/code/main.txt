@@ -1,4 +1,4 @@
-Void main () = {
+Void main () {
     // Variable Declaration
     Integer a = 5;
     Integer b = 10;
