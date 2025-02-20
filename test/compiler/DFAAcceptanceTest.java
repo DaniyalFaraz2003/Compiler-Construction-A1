@@ -165,4 +165,37 @@ class DFAAcceptanceTest {
             )
         );
     }
+
+    @Test
+    @DisplayName("Test DFA for literal: boolean")
+    void testStringLiteralBoolean() {
+        TokenAutomata tk = new TokenAutomata();
+        RE reRepo = new RE();
+        StringBuilder regex = reRepo.getRE("literal", "boolean");
+        DFA dfa = tk.processRegex(regex.toString());
+
+        ArrayList<String> testCases = new ArrayList<>();
+        testCases.add("true");
+        testCases.add("false");
+        testCases.add("TRUE");
+        testCases.add("True");
+        testCases.add("False");
+        testCases.add("FALSE");
+        testCases.add("anything");
+        testCases.add("other");
+        testCases.add("");
+
+        assertAll(
+                () -> assertTrue(tk.testString(dfa, testCases.getFirst())),
+                () -> assertTrue(tk.testString(dfa, testCases.get(1))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(2))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(3))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(4))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(5))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(6))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(7))),
+                () -> assertFalse(tk.testString(dfa, testCases.get(8))
+                )
+        );
+    }
 }
